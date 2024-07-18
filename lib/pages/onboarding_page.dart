@@ -34,10 +34,10 @@ class OnboardingPage extends StatelessWidget {
             children: [
               // Quote
               // “Yesterday is history, tomorrow is a mystery, and TODAY IS A GIFT... that's why they call it PRESENT”\n ― Master Oogway
-              SizedBox(
+              const SizedBox(
                 width: 287,
                 height: 238,
-                child: const Column(
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
@@ -136,7 +136,7 @@ class OnboardingPage extends StatelessWidget {
                   fit: BoxFit.cover,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 16,
               ),
 
@@ -146,7 +146,7 @@ class OnboardingPage extends StatelessWidget {
                 width: 295,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromRGBO(64, 169, 109, 1),
+                    backgroundColor: const Color.fromRGBO(64, 169, 109, 1),
                   ),
                   onPressed: () {},
                   child: const Text(
@@ -159,6 +159,7 @@ class OnboardingPage extends StatelessWidget {
                   ),
                 ),
               ),
+            
             ],
           ),
         ),

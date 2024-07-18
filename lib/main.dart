@@ -1,4 +1,4 @@
-import 'package:adhd_app/pages/onboarding_page.dart';
+import 'package:adhd_app/pages/main_page/main_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Inika',
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.lightGreen),
       ),
-      home: const OnboardingPage(),
+      home: const MainPage(),
     );
   }
 }
