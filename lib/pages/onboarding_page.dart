@@ -1,3 +1,4 @@
+import 'package:adhd_app/pages/main_page/main_page.dart';
 import 'package:flutter/material.dart';
 
 class OnboardingPage extends StatelessWidget {
@@ -148,7 +149,10 @@ class OnboardingPage extends StatelessWidget {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color.fromRGBO(64, 169, 109, 1),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => const MainPage()));
+                  },
                   child: const Text(
                     "Let's Heal Together",
                     style: TextStyle(
@@ -159,7 +163,6 @@ class OnboardingPage extends StatelessWidget {
                   ),
                 ),
               ),
-            
             ],
           ),
         ),

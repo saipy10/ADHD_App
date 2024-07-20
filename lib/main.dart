@@ -1,4 +1,3 @@
-import 'package:adhd_app/pages/main_page/main_page.dart';
 import 'package:adhd_app/pages/onboarding_page.dart';
 import 'package:flutter/material.dart';
 
@@ -12,11 +11,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         fontFamily: 'Inika',
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.lightGreen),
       ),
-      home: MainPage(),
+      home: const OnboardingPage(),
     );
   }
 }

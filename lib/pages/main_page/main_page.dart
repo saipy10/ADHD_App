@@ -12,7 +12,11 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   Timer? timer;
   bool playOrPause = false;
-  int breatheTime = 4, exerciseTimeMin = 0, exerciseTimeSec = 19;
+  int breatheTime = 4,
+      exerciseTimeMin = 5,
+      exerciseTimeSec = 4,
+      otm = 5,
+      ots = 4;
   int phase = 0;
   String message = "Start";
   double currentPosi = 0, factor = 165 / 19;
@@ -27,7 +31,6 @@ class _MainPageState extends State<MainPage> {
           breatheTime = 7;
           message = "Hold...";
         }
-
         break;
       case 1:
         message = "Hold...";
@@ -84,17 +87,103 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     bool cond = (exerciseTimeMin == 0 && exerciseTimeSec == 0);
-    Widget stressBallLocator() {
+    Widget stressBallLocatorWidgets() {
       return SizedBox(
-        height: 190,
-        width: 100,
+        height: 250,
+        width: 400,
         child: Stack(children: [
           Positioned(
+            top: 150,
+            child: Text(
+              "PAST",
+              style: TextStyle(
+                fontSize: MediaQuery.of(context).size.height * 0.03,
+                fontWeight: FontWeight.bold,
+                color: Colors.grey[900],
+              ),
+            ),
+          ),
+          Positioned(
+            top: 210,
+            left: 160,
+            child: Text(
+              "PRESENT",
+              style: TextStyle(
+                fontSize: MediaQuery.of(context).size.height * 0.03,
+                fontWeight: FontWeight.bold,
+                color: Colors.grey[900],
+              ),
+            ),
+          ),
+          Positioned(
+            top: 150,
+            right: 1,
+            child: Text(
+              "FUTURE",
+              style: TextStyle(
+                fontSize: MediaQuery.of(context).size.height * 0.03,
+                fontWeight: FontWeight.bold,
+                color: Colors.grey[900],
+              ),
+            ),
+          ),
+          Positioned(
+            top: 50,
+            left: 192,
+            child: RotatedBox(
+              quarterTurns: -1,
+              child: Text(
+                "STRESS",
+                style: TextStyle(
+                  fontSize: MediaQuery.of(context).size.height * 0.03,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.grey[900],
+                ),
+              ),
+            ),
+          ),
+          Positioned(
             top: currentPosi,
-            left: 42,
+            left: 192,
             child: CircleAvatar(
               radius: 15,
               backgroundColor: cond ? Colors.green : Colors.yellow,
+            ),
+          ),
+          Positioned(
+            top: ((exerciseTimeMin * 60 + exerciseTimeSec) <=
+                    ((otm * 60 + ots) / 2).floor())
+                ? cond
+                    ? currentPosi
+                    : 100
+                : 60,
+            left: ((exerciseTimeMin * 60 + exerciseTimeSec) <=
+                    ((otm * 60 + ots) / 2).floor())
+                ? cond
+                    ? 192
+                    : 120
+                : 10,
+            child: CircleAvatar(
+              radius: 15,
+              backgroundColor: cond ? Colors.green : Colors.red,
+            ),
+          ),
+          Positioned(
+            top: ((exerciseTimeMin * 60 + exerciseTimeSec) <=
+                    (otm * 60 + ots) / 2)
+                ? cond
+                    ? currentPosi
+                    : 100
+                : 60,
+            left: ((exerciseTimeMin * 60 + exerciseTimeSec) <=
+                    (otm * 60 + ots) / 2)
+                ? cond
+                    ? 192
+                    : 250
+                : 360,
+            child: CircleAvatar(
+              radius: 15,
+              backgroundColor: cond ? Colors.green : Colors.blue,
             ),
           ),
         ]),
@@ -102,116 +191,144 @@ class _MainPageState extends State<MainPage> {
     }
 
     return Scaffold(
-      body: Container(
-        child: Column(
-          children: [
-            // Mindfulness Breathing
-            const Text(
-              "Mindfulness Breathing",
-              style: TextStyle(
-                fontSize: 20.25,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-
-            // Breathe Timer
-            Text(
-              "$breatheTime",
-              style: const TextStyle(
-                fontSize: 140.25,
-                fontWeight: FontWeight.w700,
-                color: Color.fromRGBO(12, 155, 0, 1),
-              ),
-            ),
-
-            // Breathe Text
-            Text(
-              message,
-              style: const TextStyle(
-                fontWeight: FontWeight.w700,
-                fontSize: 28.25,
-                color: Color.fromRGBO(12, 155, 0, 1),
-              ),
-            ),
-
-            // Play and Pause button
-            SizedBox(
-              height: 54,
-              width: 54,
-              child: InkWell(
-                borderRadius: BorderRadius.circular(26),
-                onTap: () {
-                  setState(() {
-                    if (playOrPause) {
-                      playOrPause = false;
-                      stopTimer();
-                    } else {
-                      playOrPause = true;
-                      startTimer();
-                    }
-                  });
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(26),
-                    color: const Color.fromRGBO(217, 217, 217, 1),
-                  ),
-                  child: playOrPause
-                      ? const Icon(
-                          Icons.pause,
-                          size: 32,
-                          color: Color.fromRGBO(102, 102, 102, 1),
-                        )
-                      : const Icon(
-                          Icons.play_arrow,
-                          size: 32,
-                          color: Color.fromRGBO(102, 102, 102, 1),
-                        ),
-                ),
-              ),
-            ),
-
-            // Total exercise time
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "$exerciseTimeMin",
-                  style: const TextStyle(
-                    fontSize: 28.25,
-                    fontWeight: FontWeight.w700,
-                    color: Color.fromRGBO(125, 125, 125, 1),
-                  ),
-                ),
-                const Text(
-                  " mins ",
-                  style: TextStyle(fontSize: 18.25),
-                ),
-                Text(
-                  "$exerciseTimeSec",
-                  style: const TextStyle(
-                    fontSize: 28.25,
-                    fontWeight: FontWeight.w700,
-                    color: Color.fromRGBO(125, 125, 125, 1),
-                  ),
-                ),
-                const Text(
-                  " secs ",
-                  style: TextStyle(fontSize: 18.25),
-                ),
+      body: SingleChildScrollView(
+        child: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Color.fromRGBO(209, 255, 215, 1),
+                Color.fromRGBO(218, 255, 225, 1),
+                Color.fromRGBO(227, 255, 235, 1),
+                Color.fromRGBO(236, 255, 245, 1),
+                Color.fromRGBO(255, 255, 255, 1),
               ],
             ),
+          ),
+          child: Column(
+            children: [
+              // Mindfulness Breathing
+              const Text(
+                "Mindfulness Breathing",
+                style: TextStyle(
+                  fontSize: 20.25,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
 
-            // Divider
-            Divider(
-              indent: 50,
-              endIndent: 50,
-            ),
+              // Breathe Timer
+              Text(
+                "$breatheTime",
+                style: const TextStyle(
+                  fontSize: 140.25,
+                  fontWeight: FontWeight.w700,
+                  color: Color.fromRGBO(12, 155, 0, 1),
+                ),
+              ),
 
-            // Stress diagram
-            StressDiagram(),
-            stressBallLocator(),
-          ],
+              // Breathe Text
+              Text(
+                message,
+                style: const TextStyle(
+                  fontWeight: FontWeight.w700,
+                  fontSize: 28.25,
+                  color: Color.fromRGBO(12, 155, 0, 1),
+                ),
+              ),
+
+              // Play and Pause button
+              SizedBox(
+                height: 54,
+                width: 54,
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(26),
+                  onTap: () {
+                    setState(() {
+                      if (playOrPause && !cond) {
+                        playOrPause = false;
+                        stopTimer();
+                      } else if (!cond) {
+                        playOrPause = true;
+                        startTimer();
+                      } else {
+                        playOrPause = false;
+                        exerciseTimeMin = 0;
+                        exerciseTimeSec = 19;
+                        currentPosi = 0;
+                        message = "Start";
+                        stopTimer();
+                      }
+                    });
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(26),
+                      color: const Color.fromRGBO(217, 217, 217, 1),
+                    ),
+                    child: playOrPause && !cond
+                        ? const Icon(
+                            Icons.pause,
+                            size: 32,
+                            color: Color.fromRGBO(102, 102, 102, 1),
+                          )
+                        : cond
+                            ? const Icon(
+                                Icons.replay,
+                                size: 32,
+                                color: Color.fromRGBO(102, 102, 102, 1),
+                              )
+                            : const Icon(
+                                Icons.play_arrow,
+                                size: 32,
+                                color: Color.fromRGBO(102, 102, 102, 1),
+                              ),
+                  ),
+                ),
+              ),
+
+              // Total exercise time
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "$exerciseTimeMin",
+                    style: const TextStyle(
+                      fontSize: 28.25,
+                      fontWeight: FontWeight.w700,
+                      color: Color.fromRGBO(125, 125, 125, 1),
+                    ),
+                  ),
+                  const Text(
+                    " mins ",
+                    style: TextStyle(fontSize: 18.25),
+                  ),
+                  Text(
+                    "$exerciseTimeSec",
+                    style: const TextStyle(
+                      fontSize: 28.25,
+                      fontWeight: FontWeight.w700,
+                      color: Color.fromRGBO(125, 125, 125, 1),
+                    ),
+                  ),
+                  const Text(
+                    " secs ",
+                    style: TextStyle(fontSize: 18.25),
+                  ),
+                ],
+              ),
+
+              // Divider
+              const Divider(
+                indent: 50,
+                endIndent: 50,
+              ),
+
+              // Stress diagram
+              const StressDiagram(),
+              stressBallLocatorWidgets(),
+            ],
+          ),
         ),
       ),
     );

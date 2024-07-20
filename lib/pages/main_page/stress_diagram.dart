@@ -39,13 +39,13 @@ class CurveCustomPainter extends CustomPainter {
     // Define points for the first curve
 
     var points1 = [
-      Offset(75 - 315, 300 - 50),
-      Offset(200 - 315, 300 - 50),
-      Offset(265 - 315, 275 - 50),
-      Offset(325 - 315, 225 - 50),
-      Offset(365 - 315, 175 - 50),
-      Offset(430 - 315, 125 - 50),
-      Offset(555 - 315, 125 - 50),
+      const Offset(75 - 315, 300 - 50),
+      const Offset(200 - 315, 300 - 50),
+      const Offset(265 - 315, 275 - 50),
+      const Offset(325 - 315, 225 - 50),
+      const Offset(365 - 315, 175 - 50),
+      const Offset(430 - 315, 125 - 50),
+      const Offset(555 - 315, 125 - 50),
     ];
 
     // Draw blue circle at a specific point on the first curve
@@ -53,13 +53,13 @@ class CurveCustomPainter extends CustomPainter {
 
     // Define points for the second curve
     var points2 = [
-      Offset(75 - 315, 125 - 50),
-      Offset(200 - 315, 125 - 50),
-      Offset(265 - 315, 175 - 50),
-      Offset(325 - 315, 225 - 50),
-      Offset(365 - 315, 275 - 50),
-      Offset(430 - 315, 300 - 50),
-      Offset(555 - 315, 300 - 50),
+      const Offset(75 - 315, 125 - 50),
+      const Offset(200 - 315, 125 - 50),
+      const Offset(265 - 315, 175 - 50),
+      const Offset(325 - 315, 225 - 50),
+      const Offset(365 - 315, 275 - 50),
+      const Offset(430 - 315, 300 - 50),
+      const Offset(555 - 315, 300 - 50),
     ];
 
     // Draw red circle at a specific point on the second curve
