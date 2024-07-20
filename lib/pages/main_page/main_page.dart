@@ -19,7 +19,7 @@ class _MainPageState extends State<MainPage> {
       ots = 4;
   int phase = 0;
   String message = "Start";
-  double currentPosi = 0, factor = 165 / 19;
+  double currentPosi = 0, factor = 165 / 304;
 
   // Update the message and phase based on the current state
   void messageToShow() {
@@ -258,8 +258,8 @@ class _MainPageState extends State<MainPage> {
                         startTimer();
                       } else {
                         playOrPause = false;
-                        exerciseTimeMin = 0;
-                        exerciseTimeSec = 19;
+                        exerciseTimeMin = 5;
+                        exerciseTimeSec = 4;
                         currentPosi = 0;
                         message = "Start";
                         stopTimer();
