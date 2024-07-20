@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:adhd_app/pages/main_page/stress_diagram.dart';
 import 'package:flutter/material.dart';
 
@@ -13,9 +12,10 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   Timer? timer;
   bool playOrPause = false;
-  int breatheTime = 4, exerciseTimeMin = 5, exerciseTimeSec = 04;
+  int breatheTime = 4, exerciseTimeMin = 0, exerciseTimeSec = 19;
   int phase = 0;
   String message = "Start";
+  double currentPosi = 0, factor = 165 / 19;
 
   void messageToShow() {
     switch (phase) {
@@ -58,6 +58,9 @@ class _MainPageState extends State<MainPage> {
         setState(() {
           exerciseTimeSec--;
           messageToShow();
+          if (exerciseTimeSec > 0 || exerciseTimeMin > 0) {
+            currentPosi = currentPosi + factor;
+          }
         });
       } else if (exerciseTimeMin == 0 && exerciseTimeSec == 0) {
         setState(() => message = "Well Done!");
@@ -66,6 +69,9 @@ class _MainPageState extends State<MainPage> {
           exerciseTimeMin--;
           exerciseTimeSec = 59;
           messageToShow();
+          if (exerciseTimeSec > 0 || exerciseTimeMin > 0) {
+            currentPosi = currentPosi + factor;
+          }
         });
       }
     });
@@ -77,6 +83,24 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
+    bool cond = (exerciseTimeMin == 0 && exerciseTimeSec == 0);
+    Widget stressBallLocator() {
+      return SizedBox(
+        height: 190,
+        width: 100,
+        child: Stack(children: [
+          Positioned(
+            top: currentPosi,
+            left: 42,
+            child: CircleAvatar(
+              radius: 15,
+              backgroundColor: cond ? Colors.green : Colors.yellow,
+            ),
+          ),
+        ]),
+      );
+    }
+
     return Scaffold(
       body: Container(
         child: Column(
@@ -186,6 +210,7 @@ class _MainPageState extends State<MainPage> {
 
             // Stress diagram
             StressDiagram(),
+            stressBallLocator(),
           ],
         ),
       ),

@@ -108,8 +108,8 @@ class CurveCustomPainter extends CustomPainter {
     canvas.drawPath(path2, paint..color = Colors.grey);
 
     // Draw a vertical line and yellow circle
-    // canvas.drawLine(const Offset(250, 10), const Offset(250, 280),
-    //     paint..color = Colors.grey);
+    canvas.drawLine(
+        const Offset(8, 10), const Offset(8, 280), paint..color = Colors.grey);
     // canvas.drawCircle(const Offset(250, 25), 15, paint3);
   }
 
