@@ -7,7 +7,7 @@ class OnboardingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
-    final height = MediaQuery.of(context).size.height;
+
     return Scaffold(
       backgroundColor: Colors.white70,
       appBar: AppBar(
@@ -21,7 +21,6 @@ class OnboardingPage extends StatelessWidget {
               center: Alignment(0.0, 0.4),
               radius: 0.95,
               colors: [
-                // Colors.green,
                 Color.fromARGB(235, 230, 255, 255),
                 Color.fromARGB(235, 238, 255, 255),
                 Color.fromARGB(235, 242, 255, 255),
@@ -33,8 +32,7 @@ class OnboardingPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              // Quote
-              // “Yesterday is history, tomorrow is a mystery, and TODAY IS A GIFT... that's why they call it PRESENT”\n ― Master Oogway
+              // Quote section with multiple lines and a specific font size
               const SizedBox(
                 width: 287,
                 height: 238,
@@ -86,16 +84,14 @@ class OnboardingPage extends StatelessWidget {
                 ),
               ),
 
-              // Page divider
+              // Divider to separate quote and technique section
               Divider(
                 height: 28,
-                // thickness: width * 0.8,
                 indent: width * 0.1,
                 endIndent: width * 0.1,
               ),
 
-              // About technique
-              // Mindfulness Box Breathing Technique used by Navy Seals
+              // Information about the mindfulness technique
               const SizedBox(
                 height: 68,
                 width: 308,
@@ -128,7 +124,7 @@ class OnboardingPage extends StatelessWidget {
                 ),
               ),
 
-              // Image
+              // Image associated with the onboarding page
               SizedBox(
                 height: 196,
                 width: 238,
@@ -141,7 +137,7 @@ class OnboardingPage extends StatelessWidget {
                 height: 16,
               ),
 
-              // Let's Heal Together... button
+              // Button to navigate to the main page
               SizedBox(
                 height: 46,
                 width: 295,
@@ -150,8 +146,10 @@ class OnboardingPage extends StatelessWidget {
                     backgroundColor: const Color.fromRGBO(64, 169, 109, 1),
                   ),
                   onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => const MainPage()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const MainPage()));
                   },
                   child: const Text(
                     "Let's Heal Together",

@@ -26,15 +26,6 @@ class CurveCustomPainter extends CustomPainter {
       ..style = PaintingStyle.stroke
       ..strokeWidth = 5
       ..color = Colors.black;
-    var paint1 = Paint()
-      ..color = Colors.blue
-      ..style = PaintingStyle.fill;
-    var paint2 = Paint()
-      ..color = Colors.red
-      ..style = PaintingStyle.fill;
-    var paint3 = Paint()
-      ..color = Colors.yellow
-      ..style = PaintingStyle.fill;
 
     // Define points for the first curve
 

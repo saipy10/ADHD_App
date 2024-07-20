@@ -21,6 +21,7 @@ class _MainPageState extends State<MainPage> {
   String message = "Start";
   double currentPosi = 0, factor = 165 / 19;
 
+  // Update the message and phase based on the current state
   void messageToShow() {
     switch (phase) {
       case 0:
@@ -55,6 +56,7 @@ class _MainPageState extends State<MainPage> {
     }
   }
 
+  // Start the timer and update exercise time and message accordingly
   void startTimer() {
     timer = Timer.periodic(const Duration(seconds: 1), (_) {
       if (exerciseTimeSec > 0) {
@@ -80,6 +82,7 @@ class _MainPageState extends State<MainPage> {
     });
   }
 
+  // Stop the timer
   void stopTimer() {
     timer?.cancel();
   }
@@ -87,6 +90,8 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     bool cond = (exerciseTimeMin == 0 && exerciseTimeSec == 0);
+
+    // Widget to display the stress ball position and labels
     Widget stressBallLocatorWidgets() {
       return SizedBox(
         height: 250,
@@ -208,7 +213,7 @@ class _MainPageState extends State<MainPage> {
           ),
           child: Column(
             children: [
-              // Mindfulness Breathing
+              // Mindfulness Breathing title
               const Text(
                 "Mindfulness Breathing",
                 style: TextStyle(
@@ -217,7 +222,7 @@ class _MainPageState extends State<MainPage> {
                 ),
               ),
 
-              // Breathe Timer
+              // Breathe Timer display
               Text(
                 "$breatheTime",
                 style: const TextStyle(
@@ -227,7 +232,7 @@ class _MainPageState extends State<MainPage> {
                 ),
               ),
 
-              // Breathe Text
+              // Current breathing phase message
               Text(
                 message,
                 style: const TextStyle(
@@ -287,7 +292,7 @@ class _MainPageState extends State<MainPage> {
                 ),
               ),
 
-              // Total exercise time
+              // Display the total exercise time
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -318,13 +323,13 @@ class _MainPageState extends State<MainPage> {
                 ],
               ),
 
-              // Divider
+              // Divider to separate sections
               const Divider(
                 indent: 50,
                 endIndent: 50,
               ),
 
-              // Stress diagram
+              // Stress diagram and ball locator
               const StressDiagram(),
               stressBallLocatorWidgets(),
             ],
