@@ -48,10 +48,10 @@ To run this app, you need to have the following installed:
 
 ## Screenshots
 
-![Onboarding Screen](screenshots/onboarding.png)
+![Onboarding Screen](screenshots/)
 _Onboarding Screen with inspirational quote_
 
-![Main Screen](screenshots/main.png)
+![Main Screen](screenshots/)
 _Main Screen with breathing timer and stress level visualization_
 
 ## Contributing
