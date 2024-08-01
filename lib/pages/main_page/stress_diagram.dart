@@ -34,7 +34,7 @@ class CurveCustomPainter extends CustomPainter {
       const Offset(200 - 315, 300 - 50),
       const Offset(265 - 315, 275 - 50),
       const Offset(325 - 315, 225 - 50),
-      const Offset(365 - 315, 175 - 50),
+      const Offset(365 - 315, 175 - 60),
       const Offset(430 - 315, 125 - 50),
       const Offset(555 - 315, 125 - 50),
     ];
@@ -46,7 +46,7 @@ class CurveCustomPainter extends CustomPainter {
     var points2 = [
       const Offset(75 - 315, 125 - 50),
       const Offset(200 - 315, 125 - 50),
-      const Offset(265 - 315, 175 - 50),
+      const Offset(265 - 315, 175 - 70),
       const Offset(325 - 315, 225 - 50),
       const Offset(365 - 315, 275 - 50),
       const Offset(430 - 315, 300 - 50),
@@ -95,12 +95,12 @@ class CurveCustomPainter extends CustomPainter {
     );
 
     // Draw the paths on the canvas
-    canvas.drawPath(path1, paint..color = Colors.grey);
-    canvas.drawPath(path2, paint..color = Colors.grey);
+    canvas.drawPath(path1, paint..color = Colors.grey.shade700);
+    canvas.drawPath(path2, paint..color = Colors.grey.shade700);
 
     // Draw a vertical line and yellow circle
-    canvas.drawLine(
-        const Offset(8, 10), const Offset(8, 280), paint..color = Colors.grey);
+    canvas.drawLine(const Offset(8, 10), const Offset(8, 280),
+        paint..color = Colors.grey.shade600);
     // canvas.drawCircle(const Offset(250, 25), 15, paint3);
   }
 
